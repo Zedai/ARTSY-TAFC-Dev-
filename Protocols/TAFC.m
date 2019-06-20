@@ -1003,7 +1003,6 @@ handles.data.currentSong = [];
 if handles.reset == 0,
     handles.saveNum = num2str(str2num(handles.saveNum) + 1);
     set(handles.saveFileNumberEdit,'String',handles.saveNum);
-    
 end
 
 handles.reset = 1;
@@ -1019,6 +1018,10 @@ if handles.startOrStop == 0,
     set(handles.booth2Button,'Value',0)
     set(handles.booth3Button,'Value',0)
     set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
     handles.booth = 1;
 end
 guidata(hObject, handles);
@@ -1031,6 +1034,10 @@ if handles.startOrStop == 0,
     set(handles.booth2Button,'Value',1)
     set(handles.booth3Button,'Value',0)
     set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
     handles.booth = 2;
 end
 guidata(hObject, handles);
@@ -1043,6 +1050,10 @@ if handles.startOrStop == 0,
     set(handles.booth2Button,'Value',0)
     set(handles.booth3Button,'Value',1)
     set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
     handles.booth = 3;
 end
 guidata(hObject, handles);
@@ -1054,12 +1065,84 @@ if handles.startOrStop == 0,
     set(handles.booth2Button,'Value',0)
     set(handles.booth3Button,'Value',0)
     set(handles.booth4Button,'Value',1)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
     handles.booth = 4;
 end
 guidata(hObject, handles);
 
+%% Below, booths 5-8 callback buttons were added to the GUI
+
+% SELECT BOOTH 5
+function booth5Button_Callback(hObject, eventdata, handles)
+if handles.startOrStop == 0,
+    set(handles.booth1Button,'Value',0)
+    set(handles.booth2Button,'Value',0)
+    set(handles.booth3Button,'Value',0)
+    set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',1)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
+    handles.booth = 5;
+end
+guidata(hObject, handles);
+
+%%    BOOTH6
+function booth6Button_Callback(hObject, eventdata, handles)
+if handles.startOrStop == 0,
+    set(handles.booth1Button,'Value',0)
+    set(handles.booth2Button,'Value',0)
+    set(handles.booth3Button,'Value',0)
+    set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',1)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
+    handles.booth = 6;
+end
+guidata(hObject, handles);
+
+
+
+
+%%      BOOTH 7
+function booth7Button_Callback(hObject, eventdata, handles)
+if handles.startOrStop == 0,
+    set(handles.booth1Button,'Value',0)
+    set(handles.booth2Button,'Value',0)
+    set(handles.booth3Button,'Value',0)
+    set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',1)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',0)  %% Sai & Basilio
+    handles.booth = 7;
+end
+guidata(hObject, handles);
+
+
+%%   BOOTH 8
+function booth8Button_Callback(hObject, eventdata, handles)
+if handles.startOrStop == 0,
+    set(handles.booth1Button,'Value',0)
+    set(handles.booth2Button,'Value',0)
+    set(handles.booth3Button,'Value',0)
+    set(handles.booth4Button,'Value',0)
+    set(handles.booth5Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth6Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth7Button,'Value',0)  %% Sai & Basilio
+    set(handles.booth8Button,'Value',1)  %% Sai & Basilio
+    handles.booth = 8;
+end
+guidata(hObject, handles);
+
+
 
 % USER SPECIFIED CHANGES TO SAVE PATH
+
 function setSaveDirectoryButton_Callback(hObject, eventdata, handles)
 handles.saveName = get(handles.saveFileNameEdit,'String');
 handles.saveNum = get(handles.saveFileNumberEdit,'String');
@@ -2120,3 +2203,181 @@ set(handles.catchSongList,'String',handles.songList);
 guidata(hObject, handles);
 
 
+% --- Executes on button press in SpeakerCh5Checkbox.
+function SpeakerCh5Checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to SpeakerCh5Checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of SpeakerCh5Checkbox
+
+
+% --- Executes on button press in SpeakerCh6Checkbox.
+function SpeakerCh6Checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to SpeakerCh6Checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of SpeakerCh6Checkbox
+
+
+% --- Executes on button press in SpeakerCh7Checkbox.
+function SpeakerCh7Checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to SpeakerCh7Checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of SpeakerCh7Checkbox
+
+
+% --- Executes on button press in SpeakerCh8Checkbox.
+function SpeakerCh8Checkbox_Callback(hObject, eventdata, handles)
+% hObject    handle to SpeakerCh8Checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of SpeakerCh8Checkbox
+
+
+% --- Executes on button press in IO1Checkbox2.
+function IO1Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO1Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO1Checkbox2
+
+
+% --- Executes on button press in IO3Checkbox2.
+function IO3Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO3Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO3Checkbox2
+
+
+% --- Executes on button press in IO5Checkbox25.
+function IO5Checkbox25_Callback(hObject, eventdata, handles)
+% hObject    handle to IO5Checkbox25 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO5Checkbox25
+
+
+% --- Executes on button press in IO7Checkbox2.
+function IO7Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO7Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO7Checkbox2
+
+
+% --- Executes on button press in IO9Checkbox2.
+function IO9Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO9Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO9Checkbox2
+
+
+% --- Executes on button press in IO11Checkbox2.
+function IO11Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO11Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO11Checkbox2
+
+
+% --- Executes on button press in IO13Checkbox2.
+function IO13Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO13Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO13Checkbox2
+
+
+% --- Executes on button press in IO15Checkbox2.
+function IO15Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO15Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO15Checkbox2
+
+
+% --- Executes on button press in IO33Checkbox2.
+function IO33Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO33Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO33Checkbox2
+
+
+% --- Executes on button press in IO35Checkbox2.
+function IO35Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO35Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO35Checkbox2
+
+
+% --- Executes on button press in IO37Checkbox2.
+function IO37Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO37Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO37Checkbox2
+
+
+% --- Executes on button press in IO39Checkbox2.
+function IO39Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO39Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO39Checkbox2
+
+
+% --- Executes on button press in IO41Checkbox2.
+function IO41Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO41Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO41Checkbox2
+
+
+% --- Executes on button press in IO43Checkbox2.
+function IO43Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO43Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO43Checkbox2
+
+
+% --- Executes on button press in IO45Checkbox2.
+function IO45Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO45Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO45Checkbox2
+
+
+% --- Executes on button press in IO47Checkbox2.
+function IO47Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO47Checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of IO47Checkbox2
