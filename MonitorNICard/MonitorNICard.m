@@ -36,7 +36,7 @@ end
 function MonitorNICard_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Set up the boothStatus directory:
-handles.boothStatusDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\MonitorNICard';
+handles.boothStatusDir = 'C:\Users\Admin\Documents\MATLAB\ARTSY-TAFC-Dev-\MonitorNICard';
 
 % Configure the ports
 % This device has 3 ports

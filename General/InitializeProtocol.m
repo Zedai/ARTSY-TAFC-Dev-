@@ -8,10 +8,10 @@ function [hObject, eventdata, handles] = InitializeProtocol(protocol,hObject, ev
 % July 13, 2010
 
 %% Set up default directories that user may wish to modify
-handles.wavDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\Waves';
-handles.boothStatusDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\MonitorNICard';
-handles.saveDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\Data';
-handles.settingsDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\Settings';
+handles.wavDir = 'C:\Users\Admin\Documents\MATLAB\ARTSY-TAFC-Dev-\Waves';
+handles.boothStatusDir = 'C:\Users\Admin\Documents\MATLAB\ARTSY-TAFC-Dev-\MonitorNICard';
+handles.saveDir = 'C:\Users\Admin\Documents\MATLAB\ARTSY-TAFC-Dev-\Data';
+handles.settingsDir = 'C:\Users\Admin\Documents\MATLAB\ARTSY-TAFC-Dev-\Settings';
 
 %% Create list of wave files
 if ~isdir(handles.wavDir),
