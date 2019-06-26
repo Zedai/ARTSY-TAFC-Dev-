@@ -183,7 +183,7 @@ led2status(8) = boothStatus.led2;
 
 
 % Set the card output
-for i = 1:length(feeder),
+for i = 1:length(handles.feeder),
     cardOut(handles.feeder(i)) = feederstatus(i);
     cardOut(handles.lights(i)) = lightsstatus(i);
     cardOut(handles.led(i)) = ledstatus(i); % "EFE"
@@ -313,7 +313,7 @@ while monitorState == 1,
     %cardOut(handles.led) = ledstatusb; % "EFE"
     %cardOut(handles.led2) = led2statusb; %Basilio
     
-    for i = 1:length(feeder),
+    for i = 1:length(handles.feeder),
         cardOut(handles.feeder(i)) = feederstatus(i);
         cardOut(handles.lights(i)) = lightsstatus(i);
         cardOut(handles.led(i)) = ledstatus(i); % "EFE"

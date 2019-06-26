@@ -2257,13 +2257,13 @@ function IO3Checkbox2_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of IO3Checkbox2
 
 
-% --- Executes on button press in IO5Checkbox25.
-function IO5Checkbox25_Callback(hObject, eventdata, handles)
-% hObject    handle to IO5Checkbox25 (see GCBO)
+% --- Executes on button press in IO5Checkbox2.
+function IO5Checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to IO5Checkbox2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of IO5Checkbox25
+% Hint: get(hObject,'Value') returns toggle state of IO5Checkbox2
 
 
 % --- Executes on button press in IO7Checkbox2.
