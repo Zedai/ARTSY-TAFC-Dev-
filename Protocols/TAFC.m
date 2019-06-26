@@ -102,7 +102,7 @@ if handles.startOrStop == 1 && handles.running == 0,
         first = true;
     % Wait for the bird to initiate a trial
     while handles.startOrStop == 1,
-        pinCheck = [1,1];                                               % Added by Efe Soyman.
+        pinCheck = [1,1];                  % Added by Efe Soyman.
 
         % On the first pass through the while loop, display status
         if StartWaiting,

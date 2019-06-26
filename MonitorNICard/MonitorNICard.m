@@ -13,11 +13,11 @@ function varargout = MonitorNICard(varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @MonitorNICard_OpeningFcn, ...
-                   'gui_OutputFcn',  @MonitorNICard_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
+    'gui_Singleton',  gui_Singleton, ...
+    'gui_OpeningFcn', @MonitorNICard_OpeningFcn, ...
+    'gui_OutputFcn',  @MonitorNICard_OutputFcn, ...
+    'gui_LayoutFcn',  [] , ...
+    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -36,7 +36,7 @@ end
 function MonitorNICard_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Set up the boothStatus directory:
-handles.boothStatusDir = 'C:\Users\kusnecov-335\Documents\MATLAB\ARTSYNEW\MonitorNICard';
+handles.boothStatusDir = 'C:\Users\Admin\Documents\MATLAB\ARTSYNEW\MonitorNICard';
 
 % Configure the ports
 % This device has 3 ports
@@ -54,14 +54,14 @@ handles.boothStatusDir = 'C:\Users\kusnecov-335\Documents\MATLAB\ARTSYNEW\Monito
 %11                 19          Key2
 %13                 18          Key2
 %15                 17          Key2
-%17                 16          (not used)
-%19                 15          (not used)
-%21                 14          (not used)
-%23                 13          (not used)
-%25                 12          (not used)
-%27                 11          (not used)
-%29                 10          (not used)
-%31                 9           (not used)
+%17                 16          LED1
+%19                 15          LED1
+%21                 14          LED1
+%23                 13          LED1
+%25                 12          LED2
+%27                 11          LED2
+%29                 10          LED2
+%31                 9           LED2
 %33                 8           Feeder
 %35                 7           Feeder
 %37                 6           Feeder
@@ -74,10 +74,15 @@ handles.boothStatusDir = 'C:\Users\kusnecov-335\Documents\MATLAB\ARTSYNEW\Monito
 NI = daqhwinfo('nidaq');
 %NI2 = daqhwinfo('
 handles.dio = digitalio(NI.AdaptorName, [NI.InstalledBoardIds{1}]);
+handles.dio2 = digitalio(NI.AdaptorName, [NI.InstalledBoardIds{2}]);
 
 addline(handles.dio, 0:7, 0, 'Out'); %Pins 47-33
 addline(handles.dio, 0:7, 1, 'Out'); %Pins 31-17
 addline(handles.dio, 0:7, 2, 'In'); %Pins 15-1
+
+addline(handles.dio2, 0:7, 0, 'Out'); %Pins 47-33
+addline(handles.dio2, 0:7, 1, 'Out'); %Pins 31-17
+addline(handles.dio2, 0:7, 2, 'In'); %Pins 15-1
 
 % Set up the pins to monitor
 % Booth 1:
@@ -112,59 +117,86 @@ pause(0.01)
 for i = 1:length(handles.key1),
     key1status(i) = double(getvalue(handles.dio.Line(handles.key1(i))));
     key2status(i) = double(getvalue(handles.dio.Line(handles.key2(i))));
+    %Sai
+    key1status(i + 4) = double(getvalue(handles.dio2.Line(handles.key1(i))));
+    key2status(i + 4) = double(getvalue(handles.dio2.Line(handles.key2(i))));
 end
 
-% Get the initial state of all feeders
+% Get the initial state of all booths status values
+% "EFE, Sai, Basilio"
 load booth1Status
 feederstatus(1) = boothStatus.feeder;
-load booth2Status
-feederstatus(2) = boothStatus.feeder;
-load booth3Status
-feederstatus(3) = boothStatus.feeder;
-load booth4Status
-feederstatus(4) = boothStatus.feeder;
-
-% Get the initial state of all lights
-load booth1Status
 lightsstatus(1) = boothStatus.lights;
-load booth2Status
-lightsstatus(2) = boothStatus.lights;
-load booth3Status
-lightsstatus(3) = boothStatus.lights;
-load booth4Status
-lightsstatus(4) = boothStatus.lights;
-
-% "EFE, Sai, Basilio" Get the initial state of all leds
-load booth1Status
 boothStatus.led = 1;
 boothStatus.led2 = 1;
 ledstatus(1) = boothStatus.led;
 led2status(1) = boothStatus.led2;
 load booth2Status
+feederstatus(2) = boothStatus.feeder;
+lightsstatus(2) = boothStatus.lights;
 boothStatus.led = 1;
 boothStatus.led2 = 1;
 ledstatus(2) = boothStatus.led;
 led2status(2) = boothStatus.led2;
 load booth3Status
+feederstatus(3) = boothStatus.feeder;
+lightsstatus(3) = boothStatus.lights;
 boothStatus.led = 1;
 boothStatus.led2 = 1;
 ledstatus(3) = boothStatus.led;
 led2status(3) = boothStatus.led2;
 load booth4Status
+feederstatus(4) = boothStatus.feeder;
+lightsstatus(4) = boothStatus.lights;
 boothStatus.led = 1;
 boothStatus.led2 = 1;
 ledstatus(4) = boothStatus.led;
 led2status(4) = boothStatus.led2;
+load booth5Status
+feederstatus(5) = boothStatus.feeder;
+lightsstatus(5) = boothStatus.lights;
+boothStatus.led = 1;
+boothStatus.led2 = 1;
+ledstatus(5) = boothStatus.led;
+led2status(5) = boothStatus.led2;
+load booth6Status
+feederstatus(6) = boothStatus.feeder;
+lightsstatus(6) = boothStatus.lights;
+boothStatus.led = 1;
+boothStatus.led2 = 1;
+ledstatus(6) = boothStatus.led;
+led2status(6) = boothStatus.led2;
+load booth7Status
+feederstatus(7) = boothStatus.feeder;
+lightsstatus(7) = boothStatus.lights;
+boothStatus.led = 1;
+boothStatus.led2 = 1;
+ledstatus(7) = boothStatus.led;
+led2status(7) = boothStatus.led2;
+load booth8Status
+feederstatus(8) = boothStatus.feeder;
+lightsstatus(8) = boothStatus.lights;
+boothStatus.led = 1;
+boothStatus.led2 = 1;
+ledstatus(8) = boothStatus.led;
+led2status(8) = boothStatus.led2;
+
 
 % Set the card output
-for i = 1:length(feederstatus),
+for i = 1:length(feeder),
     cardOut(handles.feeder(i)) = feederstatus(i);
     cardOut(handles.lights(i)) = lightsstatus(i);
     cardOut(handles.led(i)) = ledstatus(i); % "EFE"
     cardOut(handles.led2(i)) = led2status(i); % "SAI Basilio"
+    
+    cardOut2(handles.feeder(i)) = feederstatus(i + 4);
+    cardOut2(handles.lights(i)) = lightsstatus(i + 4);
+    cardOut2(handles.led(i)) = ledstatus(i + 4); % "EFE"
+    cardOut2(handles.led2(i)) = led2status(i + 4); % "SAI Basilio"
 end
-pause(0.01)
+pause(0.02)
 putvalue(handles.dio.Line([1:16]),cardOut) % "EFE" Changed 8 to 16
+putvalue(handles.dio2.Line([1:16]),cardOut2) % "Sai  oilisab
 
 %putvalue(handles.dio.Line([9:16]), [1 1 1 1 1 1 1 1]); %Sai
 
@@ -178,7 +210,7 @@ timerState = get(handles.timerStatus,'Value');
 if monitorState == 0,
     monitorStatus = 'Press to begin monitoring...';
 else
-    monitorStatus = 'Actively monitoring NI card';
+    monitorStatus = 'Actively monitoring NI cards';
 end
 set(handles.MonitorStatusText,'String',monitorStatus)
 
@@ -200,15 +232,20 @@ while monitorState == 1,
         pause(0.01)
         key2statusb(i) = double(getvalue(handles.dio.Line(handles.key2(i))));
         pause(0.01)
+        %Sai
+        key1statusb(i + 4) = double(getvalue(handles.dio2.Line(handles.key1(i))));
+        pause(0.01)
+        key2statusb(i + 4) = double(getvalue(handles.dio2.Line(handles.key2(i))));
+        pause(0.01)
     end
     
     % Check whether any keys have changed state
     key1Change = find(key1statusb~=key1status);
- 
+    
     key2Change = find(key2statusb~=key2status);
-
+    
     keyChange = unique([key1Change,key2Change]);
-
+    
     % Update keyStatus if there's been a change
     if ~isempty(keyChange),
         for i = keyChange
@@ -247,7 +284,7 @@ while monitorState == 1,
     % Get the current state of all feeders
     % Get the current state of all lights
     % "EFE" Get the current state of all leds
-    for i = 1:4,
+    for i = 1:8, %Basi
         tryflag = 1;
         while tryflag,
             try
@@ -271,14 +308,27 @@ while monitorState == 1,
     led2Change = find(led2statusb~=led2status); % Basilio
     
     % Update the card output vector
-    cardOut(handles.feeder) = feederstatusb;
-    cardOut(handles.lights) = lightsstatusb;
-    cardOut(handles.led) = ledstatusb; % "EFE"
-    cardOut(handles.led2) = led2statusb; %Basilio
+    %cardOut(handles.feeder) = feederstatusb;
+    %cardOut(handles.lights) = lightsstatusb;
+    %cardOut(handles.led) = ledstatusb; % "EFE"
+    %cardOut(handles.led2) = led2statusb; %Basilio
+    
+    for i = 1:length(feeder),
+        cardOut(handles.feeder(i)) = feederstatus(i);
+        cardOut(handles.lights(i)) = lightsstatus(i);
+        cardOut(handles.led(i)) = ledstatus(i); % "EFE"
+        cardOut(handles.led2(i)) = led2status(i); % "SAI Basilio"
+        
+        cardOut2(handles.feeder(i)) = feederstatus(i + 4);
+        cardOut2(handles.lights(i)) = lightsstatus(i + 4);
+        cardOut2(handles.led(i)) = ledstatus(i + 4); % "EFE"
+        cardOut2(handles.led2(i)) = led2status(i + 4); % "SAI Basilio"
+    end
     
     % Update the card if the feeder or light status' have changed
     if ~isempty(feederChange) || ~isempty(lightsChange) || ~isempty(ledChange) || ~isempty(led2Change) , % "EFE"
         putvalue(handles.dio.Line([1:16]),cardOut) % "EFE" Changed 8 to 16
+        putvalue(handles.dio2.Line([1:16]),cardOut2) % Sai
     end
     
     %-----------------------------------------------------
@@ -293,7 +343,7 @@ while monitorState == 1,
     led2status = led2statusb; %Basilio
     
     %-----------------------------------------------------
-    % If the timer is ON, checktimes and 
+    % If the timer is ON, checktimes and
     %-----------------------------------------------------
     if timerState == 1,
         % Get the current time
@@ -317,10 +367,11 @@ while monitorState == 1,
             if turnOff == 1,
                 disp('Entering sleep mode...')
                 % Set all of the feeders and lights to zero
-                lightsstatusb = [0 0 0 0];
-                feederstatusb = [0 0 0 0];
-                ledstatusb = [0 0 0 0];
-                led2statusb = [0 0 0 0];
+                %SAI
+                lightsstatusb = [0 0 0 0 0 0 0 0];
+                feederstatusb = [0 0 0 0 0 0 0 0];
+                ledstatusb = [0 0 0 0 0 0 0 0];
+                led2statusb = [0 0 0 0 0 0 0 0];
                 
                 % Check whether any feeders have changed states
                 feederChange = find(feederstatusb~=feederstatus);
@@ -329,14 +380,23 @@ while monitorState == 1,
                 led2Change = find(led2statusb~=led2status);
                 
                 % Update the card output vector
-                cardOut(handles.feeder) = feederstatusb;
-                cardOut(handles.lights) = lightsstatusb;
-                cardOut(handles.led) = ledstatusb;
-                cardOut(handles.led2) = led2statusb;
+                %Sai
+                for i = 1:length(feeder),
+                    cardOut(handles.feeder(i)) = feederstatus(i);
+                    cardOut(handles.lights(i)) = lightsstatus(i);
+                    cardOut(handles.led(i)) = ledstatus(i); % "EFE"
+                    cardOut(handles.led2(i)) = led2status(i); % "SAI Basilio"
+                    
+                    cardOut2(handles.feeder(i)) = feederstatus(i + 4);
+                    cardOut2(handles.lights(i)) = lightsstatus(i + 4);
+                    cardOut2(handles.led(i)) = ledstatus(i + 4); % "EFE"
+                    cardOut2(handles.led2(i)) = led2status(i + 4); % "SAI Basilio"
+                end
                 
                 % Update the card if the feeder or light status' have changed
-                if ~isempty(feederChange) || ~isempty(lightsChange) || ~isempty(ledChange) || ~isempty(led2Change),
-                    putvalue(handles.dio.Line([1:16]),cardOut)
+                if ~isempty(feederChange) || ~isempty(lightsChange) || ~isempty(ledChange) || ~isempty(led2Change) , % "EFE"
+                    putvalue(handles.dio.Line([1:16]),cardOut) % "EFE" Changed 8 to 16
+                    putvalue(handles.dio2.Line([1:16]),cardOut2) % Sai
                 end
                 
                 lightsstatus = lightsstatusb;
@@ -354,7 +414,7 @@ while monitorState == 1,
             
             tcurrent = clock;
             tCurrent = tcurrent(4) + tcurrent(5)/60;
-        
+            
             pause(0.1)
         end
         if turnOn == 1,
@@ -376,17 +436,18 @@ while monitorState == 1,
     % Get the state of the toggle button
     monitorState = get(hObject,'Value');
     timerState = get(handles.timerStatus,'Value');
-
+    
 end
 
 pause (.01)  %Sai
 %cardOut(handles.led) = [0 0 0 0 0 0 0 0];
-putvalue(handles.dio.Line([9:16]), [0 0 0 0 0 0 0 0]);
+putvalue(handles.dio.Line([9:16]), [0 0 0 0 0 0 0 0]); %Ssiaia
+putvalue(handles.dio2.Line([9:16]), [0 0 0 0 0 0 0 0]); %Ssiaia
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %UNUSED FUNCTIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function varargout = MonitorNICard_OutputFcn(hObject, eventdata, handles) 
+function varargout = MonitorNICard_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
