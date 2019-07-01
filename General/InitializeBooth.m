@@ -9,6 +9,12 @@ function [hObject, eventdata, handles] = InitializeBooth(hObject, eventdata, han
 
 
 %% Set all other booth specific settings
+
+%Sai: To be completely honest, i have no idea why lightsStatus turns on
+%with 0 now but thats what it is so we're rolling with it
+handles.feederStatus = 0;
+handles.lightsStatus = 0;
+
 switch handles.booth
     case 1
         %Assign the appropriate value to handles.booth
@@ -661,29 +667,29 @@ end
 %% Select the audio output device and the stereo channel
 switch handles.booth
     case 1
-        handles.speaker = 10;
-        handles.channelGain = [0 1];
+        handles.speaker = 11;
+        handles.channelGain = [1 0];
     case 2
-        handles.speaker = 9;
-        handles.channelGain = [0 1];
-    case 3
-        handles.speaker = 8;
-        handles.channelGain = [1 0];
-    case 4
-        handles.speaker = 8;
-        handles.channelGain = [1 0];
-    case 5
         handles.speaker = 11;
         handles.channelGain = [0 1];
-    case 6
-        handles.speaker = 12;
-        handles.channelGain = [0 1];
-    case 7
-        handles.speaker = 13;
-        handles.channelGain = [1 0];
-    case 8
+    case 3
         handles.speaker = 14;
         handles.channelGain = [1 0];
+    case 4
+        handles.speaker = 14;
+        handles.channelGain = [0 1];
+    case 5
+        handles.speaker = 16;
+        handles.channelGain = [1 0];
+    case 6
+        handles.speaker = 16;
+        handles.channelGain = [0 1];
+    case 7
+        handles.speaker = 10;
+        handles.channelGain = [1 0];
+    case 8
+        handles.speaker = 10;
+        handles.channelGain = [0 1];
 end
 
 
