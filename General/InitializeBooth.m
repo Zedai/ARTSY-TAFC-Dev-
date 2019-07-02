@@ -13,7 +13,7 @@ function [hObject, eventdata, handles] = InitializeBooth(hObject, eventdata, han
 %Sai: To be completely honest, i have no idea why lightsStatus turns on
 %with 0 now but thats what it is so we're rolling with it
 handles.feederStatus = 0;
-handles.lightsStatus = 0;
+handles.lightsStatus = 1;
 
 switch handles.booth
     case 1

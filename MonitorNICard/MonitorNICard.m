@@ -441,6 +441,8 @@ end
 
 pause (.01)  %Sai
 %cardOut(handles.led) = [0 0 0 0 0 0 0 0];
+%putvalue(handles.dio.Line([1:4]), [0 0 0 0]); %Ssiaia
+
 putvalue(handles.dio.Line([9:16]), [0 0 0 0 0 0 0 0]); %Ssiaia
 putvalue(handles.dio2.Line([9:16]), [0 0 0 0 0 0 0 0]); %Ssiaia
 

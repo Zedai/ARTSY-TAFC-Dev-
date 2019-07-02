@@ -9,7 +9,7 @@ function [hObject, eventdata, handles] = CloseBooth(hObject, eventdata, handles)
 
 cd(handles.boothStatusDir)
 
-handles.lightsStatus = 1; %Sai: 1 turns off lights
+handles.lightsStatus = 0; %Sai: 1 turns off lights
 handles.feederStatus = 0;
 
 %Set the boothStatus
